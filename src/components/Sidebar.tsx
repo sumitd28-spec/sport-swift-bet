@@ -81,9 +81,9 @@ export const Sidebar = ({
       
       {/* Sidebar */}
       <div className={`
-        fixed left-0 top-0 h-full bg-primary text-primary-foreground z-50 transition-transform duration-300 ease-in-out
+        fixed left-0 top-16 h-[calc(100vh-4rem)] bg-primary text-primary-foreground z-50 transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-        lg:translate-x-0 lg:static lg:z-auto
+        lg:translate-x-0 lg:fixed lg:z-auto
         w-80 flex flex-col shadow-elegant
       `}>
         {/* Header */}

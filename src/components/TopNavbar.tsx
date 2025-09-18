@@ -9,8 +9,8 @@ interface TopNavbarProps {
 
 export const TopNavbar = ({ onMenuClick, onAuthClick, user }: TopNavbarProps) => {
   return (
-    <header className="bg-white border-b border-border shadow-sm sticky top-0 z-30">
-      <div className="flex items-center justify-between px-4 py-3">
+    <header className="fixed top-0 left-0 right-0 bg-background border-b border-border shadow-sm z-30">
+      <div className="flex items-center justify-between px-2 sm:px-4 py-2 sm:py-3 h-16">
         {/* Left side - Menu toggle */}
         <div className="flex items-center gap-4">
           <Button
@@ -23,54 +23,49 @@ export const TopNavbar = ({ onMenuClick, onAuthClick, user }: TopNavbarProps) =>
           </Button>
           
           <div className="hidden lg:block">
-            <h1 className="text-xl font-bold text-primary">SPORTEXCH</h1>
+            <h1 className="text-lg sm:text-xl font-bold text-primary">TOMEXCH</h1>
+          </div>
+          <div className="lg:hidden">
+            <h1 className="text-lg font-bold text-primary">TOMEXCH</h1>
           </div>
         </div>
 
-        {/* Center - Navigation tabs */}
-        <div className="hidden md:flex items-center gap-1">
-          <Button variant="ghost" size="sm" className="text-sm font-medium">
-            <span className="text-orange-500">●</span> In Play
-          </Button>
-          <Button variant="ghost" size="sm" className="text-sm font-medium">
-            <span className="text-blue-500">●</span> Cricket
-          </Button>
-          <Button variant="ghost" size="sm" className="text-sm font-medium">
-            <span className="text-green-500">●</span> Soccer
-          </Button>
-          <Button variant="ghost" size="sm" className="text-sm font-medium">
-            <span className="text-yellow-500">●</span> Tennis
-          </Button>
-          <Button variant="ghost" size="sm" className="text-sm font-medium">
-            <span className="text-purple-500">●</span> Premium Races
-          </Button>
-          <Button variant="ghost" size="sm" className="text-sm font-medium">
-            <span className="text-red-500">●</span> Casino
-          </Button>
-          <Button variant="ghost" size="sm" className="text-sm font-medium">
-            <span className="text-gray-500">●</span> Help & Support
-          </Button>
+        {/* Center - Quick stats */}
+        <div className="hidden md:flex items-center gap-2 lg:gap-4">
+          <div className="flex items-center gap-1 bg-destructive/10 text-destructive px-2 py-1 rounded-full text-xs font-medium">
+            <div className="w-1.5 h-1.5 bg-current rounded-full animate-ping"></div>
+            <span>35 Live</span>
+          </div>
+          <div className="flex items-center gap-1 bg-primary/10 text-primary px-2 py-1 rounded-full text-xs font-medium">
+            <span>🏏</span>
+            <span>Cricket</span>
+          </div>
+          <div className="flex items-center gap-1 bg-accent/10 text-accent px-2 py-1 rounded-full text-xs font-medium">
+            <span>⚽</span>
+            <span>Football</span>
+          </div>
         </div>
 
         {/* Right side - User actions */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           {user ? (
             <>
-              <div className="hidden sm:flex items-center gap-3 mr-4">
+              <div className="hidden sm:flex items-center gap-2 mr-2">
                 <div className="text-right">
-                  <p className="text-sm font-medium">{user.name}</p>
+                  <p className="text-xs sm:text-sm font-medium">{user.name}</p>
                   <p className="text-xs text-success font-bold">
-                    Balance: ${user.balance.toFixed(2)}
+                    ${user.balance.toFixed(2)}
                   </p>
                 </div>
-                <Button variant="ghost" size="sm">
-                  <Bell className="h-4 w-4" />
+                <Button variant="ghost" size="sm" className="p-1 sm:p-2">
+                  <Bell className="h-3 w-3 sm:h-4 sm:w-4" />
                 </Button>
               </div>
               <Button 
                 onClick={() => onAuthClick('login')}
                 variant="outline" 
                 size="sm"
+                className="text-xs sm:text-sm px-2 sm:px-4"
               >
                 Account
               </Button>
@@ -81,19 +76,19 @@ export const TopNavbar = ({ onMenuClick, onAuthClick, user }: TopNavbarProps) =>
                 onClick={() => onAuthClick('login')}
                 variant="outline" 
                 size="sm"
-                className="hidden sm:flex items-center gap-2"
+                className="hidden sm:flex items-center gap-1 text-xs px-2"
               >
-                <LogIn className="h-4 w-4" />
+                <LogIn className="h-3 w-3" />
                 Login
               </Button>
               <Button 
                 onClick={() => onAuthClick('register')}
-                variant="default"
+                className="flex items-center gap-1 text-xs px-2 sm:px-4 bg-primary hover:bg-primary-dark"
                 size="sm"
-                className="flex items-center gap-2"
               >
-                <UserPlus className="h-4 w-4" />
+                <UserPlus className="h-3 w-3 sm:h-4 sm:w-4" />
                 <span className="hidden sm:inline">Register</span>
+                <span className="sm:hidden">Join</span>
               </Button>
             </>
           )}
