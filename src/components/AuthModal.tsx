@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
+import { DialogDescription } from "@/components/ui/dialog";
 import { Eye, EyeOff, Mail, Lock, User, Phone } from "lucide-react";
 
 interface AuthModalProps {
@@ -60,11 +61,14 @@ export const AuthModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md max-w-[95vw] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-center text-2xl font-bold">
+          <DialogTitle className="text-center text-xl sm:text-2xl font-bold">
             {mode === 'login' ? 'Welcome Back' : 'Join SportExch'}
           </DialogTitle>
+          <DialogDescription className="text-center text-muted-foreground">
+            {mode === 'login' ? 'Sign in to your account to continue' : 'Create your account to start betting'}
+          </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6">
@@ -101,7 +105,7 @@ export const AuthModal = ({
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             {mode === 'register' && (
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First Name</Label>
                   <div className="relative">

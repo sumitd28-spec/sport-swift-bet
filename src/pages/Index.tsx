@@ -127,7 +127,7 @@ const Index = () => {
         return (
           <>
             <HeroSection onGetStarted={handleGetStarted} />
-            <div className="p-6">
+            <div className="p-4 md:p-6">
               <BettingMarkets 
                 activeSport={activeSport} 
                 onBetSelect={handleBetSelect}
@@ -137,7 +137,7 @@ const Index = () => {
         );
       case "in-play":
         return (
-          <div className="p-6">
+          <div className="p-4 md:p-6">
             <div className="text-center py-12">
               <h2 className="text-2xl font-bold mb-4">Live In-Play Betting</h2>
               <p className="text-muted-foreground">Real-time betting on live sports events coming soon!</p>
@@ -189,7 +189,7 @@ const Index = () => {
         );
       default:
         return (
-          <div className="p-6">
+          <div className="p-4 md:p-6">
             <BettingMarkets 
               activeSport={activeSport} 
               onBetSelect={handleBetSelect}
@@ -207,7 +207,7 @@ const Index = () => {
         user={user}
       />
       
-      <div className="flex">
+      <div className="flex min-h-screen">
         <Sidebar
           isOpen={isSidebarOpen}
           onClose={() => setIsSidebarOpen(false)}
@@ -223,14 +223,18 @@ const Index = () => {
             setIsSidebarOpen(false);
           }}
         />
-        <div className="flex">
-          <main className="flex-1 lg:ml-80">
-            {renderContent()}
+        
+        <div className="flex flex-1 w-full">
+          {/* Main Content */}
+          <main className="flex-1 min-w-0 lg:ml-80">
+            <div className="w-full max-w-none">
+              {renderContent()}
+            </div>
           </main>
           
-          {/* Right Sidebar - My Bets */}
-          <div className="hidden lg:block w-96 bg-white border-l border-gray-200">
-            <div className="p-4">
+          {/* Right Sidebar - My Bets - Desktop Only */}
+          <div className="hidden xl:block w-80 2xl:w-96 bg-card border-l border-border">
+            <div className="p-4 h-full overflow-y-auto">
               <MyBets 
                 bets={myBets}
                 onRemoveBet={handleRemoveMyBet}
@@ -251,12 +255,12 @@ const Index = () => {
         onClose={() => setIsBetSlipOpen(false)}
       />
 
-      {/* Floating Bet Slip Toggle */}
+      {/* Floating Bet Slip Toggle - Mobile */}
       {bets.length > 0 && (
-        <div className="fixed bottom-6 right-6 z-40 lg:hidden">
+        <div className="fixed bottom-6 right-6 z-40 xl:hidden">
           <button
             onClick={() => setIsBetSlipOpen(true)}
-            className="bg-primary text-white rounded-full p-4 shadow-elegant animate-pulse-glow"
+            className="bg-primary text-primary-foreground rounded-full p-4 shadow-elegant animate-pulse-glow transition-smooth"
           >
             <div className="flex items-center gap-2">
               <span className="font-bold">{bets.length}</span>

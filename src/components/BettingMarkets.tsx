@@ -136,7 +136,7 @@ export const BettingMarkets = ({ activeSport, onBetSelect }: BettingMarketsProps
   const renderOddsButton = (odds: number, label: string, matchId: string, type: string) => (
     <button
       onClick={() => onBetSelect({ matchId, type, odds, label })}
-      className="bg-blue-100 hover:bg-blue-200 text-blue-900 font-semibold px-4 py-2 rounded min-w-[60px] text-center transition-colors border border-blue-200"
+      className="bg-accent/10 hover:bg-accent/20 text-accent-foreground font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded min-w-[50px] sm:min-w-[60px] text-center transition-smooth border border-accent/30 text-sm hover:scale-105"
     >
       {odds.toFixed(2)}
     </button>
@@ -180,26 +180,26 @@ export const BettingMarkets = ({ activeSport, onBetSelect }: BettingMarketsProps
             </Card>
           ) : (
             matches.map((match) => (
-              <Card key={match.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-                <div className="bg-blue-900 text-white px-4 py-2 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span className="text-sm font-medium">{match.category}</span>
+              <Card key={match.id} className="bg-card border-border rounded-lg overflow-hidden shadow-card animate-fade-in">
+                <div className="bg-primary text-primary-foreground px-3 sm:px-4 py-2 flex items-center justify-between">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <span className="text-xs sm:text-sm font-medium truncate">{match.category}</span>
                     <Badge variant={match.isLive ? "destructive" : "secondary"} className="text-xs">
                       {match.isLive ? "LIVE" : "Coming Up"}
                     </Badge>
                   </div>
-                  <div className="flex items-center gap-2 text-sm">
+                  <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
                     <Clock className="h-3 w-3" />
                     <span>{match.timeLeft}</span>
                   </div>
                 </div>
                 
-                <CardContent className="p-4">
-                  <div className="grid grid-cols-12 gap-4">
+                <CardContent className="p-3 sm:p-4">
+                  <div className="grid grid-cols-12 gap-2 sm:gap-4">
                     {/* Teams and Odds */}
                     <div className="col-span-12 space-y-3">
                       {/* Header with odds labels */}
-                      <div className="grid grid-cols-12 items-center text-sm font-medium text-gray-600">
+                      <div className="grid grid-cols-12 items-center text-xs sm:text-sm font-medium text-muted-foreground">
                         <div className="col-span-6"></div>
                         <div className="col-span-2 text-center">1</div>
                         <div className="col-span-2 text-center">X</div>
@@ -207,16 +207,16 @@ export const BettingMarkets = ({ activeSport, onBetSelect }: BettingMarketsProps
                       </div>
                       
                       {/* Match row */}
-                      <div className="grid grid-cols-12 items-center py-2 border-b border-gray-100">
+                      <div className="grid grid-cols-12 items-center py-2 border-b border-border">
                         <div className="col-span-6">
                           <div className="space-y-1">
-                            <div className="flex items-center gap-2 text-sm font-medium">
-                              <span className="text-lg">{match.homeFlag}</span>
-                              <span>{match.homeTeam}</span>
+                            <div className="flex items-center gap-2 text-xs sm:text-sm font-medium">
+                              <span className="text-base sm:text-lg">{match.homeFlag}</span>
+                              <span className="truncate">{match.homeTeam}</span>
                             </div>
-                            <div className="flex items-center gap-2 text-sm font-medium">
-                              <span className="text-lg">{match.awayFlag}</span>
-                              <span>{match.awayTeam}</span>
+                            <div className="flex items-center gap-2 text-xs sm:text-sm font-medium">
+                              <span className="text-base sm:text-lg">{match.awayFlag}</span>
+                              <span className="truncate">{match.awayTeam}</span>
                             </div>
                           </div>
                         </div>
@@ -225,7 +225,7 @@ export const BettingMarkets = ({ activeSport, onBetSelect }: BettingMarketsProps
                         </div>
                         <div className="col-span-2 text-center">
                           {match.odds.draw ? renderOddsButton(match.odds.draw, "Draw", match.id, "draw") : (
-                            <span className="text-gray-400 text-sm">-</span>
+                            <span className="text-muted-foreground text-sm">-</span>
                           )}
                         </div>
                         <div className="col-span-2 text-center">
@@ -236,22 +236,25 @@ export const BettingMarkets = ({ activeSport, onBetSelect }: BettingMarketsProps
                   </div>
                   
                   {/* Additional info */}
-                  <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
-                    <div className="flex items-center gap-4 text-xs text-gray-500">
+                  <div className="flex items-center justify-between mt-3 pt-3 border-t border-border">
+                    <div className="flex items-center gap-2 sm:gap-4 text-xs text-muted-foreground">
                       {match.viewers && (
                         <div className="flex items-center gap-1">
                           <Users className="h-3 w-3" />
-                          <span>{match.viewers.toLocaleString()} viewers</span>
+                          <span className="hidden sm:inline">{match.viewers.toLocaleString()} viewers</span>
+                          <span className="sm:hidden">{(match.viewers / 1000).toFixed(1)}k</span>
                         </div>
                       )}
                       <div className="flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
-                        <span>Full Time Result</span>
+                        <span className="hidden sm:inline">Full Time Result</span>
+                        <span className="sm:hidden">FT</span>
                       </div>
                     </div>
                     <Button variant="ghost" size="sm" className="text-xs">
                       <Star className="h-3 w-3 mr-1" />
-                      Add to Favorites
+                      <span className="hidden sm:inline">Add to Favorites</span>
+                      <span className="sm:hidden">Fav</span>
                     </Button>
                   </div>
                 </CardContent>
