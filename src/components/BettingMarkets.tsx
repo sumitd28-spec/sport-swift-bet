@@ -30,7 +30,7 @@ interface BettingMarketsProps {
 const sampleMatches: { [key: string]: Match[] } = {
   cricket: [
     {
-      id: "c1",
+      id: "wodi-1",
       homeTeam: "India W",
       awayTeam: "Australia W",
       homeFlag: "🇮🇳",
@@ -38,44 +38,44 @@ const sampleMatches: { [key: string]: Match[] } = {
       odds: { home: 2.52, away: 1.65 },
       isLive: true,
       timeLeft: "Coming Up",
-      category: "Women's One Day International",
+      category: "Women's One Day Internationals",
       viewers: 15420
     },
     {
-      id: "c2",
+      id: "asia-cup-1",
       homeTeam: "Pakistan W",
       awayTeam: "United Arab Emirates",
       homeFlag: "🇵🇰",
       awayFlag: "🇦🇪",
-      odds: { home: 1.08, away: 11.5 },
-      timeLeft: "Coming Up",
+      odds: { home: 1.09, away: 11.5 },
+      timeLeft: "Today 20:00",
       category: "Asia Cup",
       viewers: 8930
     },
     {
-      id: "c3",
-      homeTeam: "St. Lucia Kings",
-      awayTeam: "Guyana Amazon Warriors",
-      homeFlag: "🏏",
-      awayFlag: "🏏",
-      odds: { home: 2.18, away: 1.85 },
-      timeLeft: "Coming Up",
-      category: "Caribbean Premier League",
-      viewers: 12450
-    },
-    {
-      id: "c4",
+      id: "t20-intl-1",
       homeTeam: "Ireland",
       awayTeam: "England",
       homeFlag: "🇮🇪",
       awayFlag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
       odds: { home: 13.5, away: 1.07 },
-      timeLeft: "Today 15:00",
+      timeLeft: "Today 18:00",
       category: "International Twenty20 Matches",
       viewers: 25340
     },
     {
-      id: "c5",
+      id: "cpl-1",
+      homeTeam: "St. Lucia Kings",
+      awayTeam: "Guyana Amazon Warriors",
+      homeFlag: "🏏",
+      awayFlag: "🏏",
+      odds: { home: 2.18, away: 1.85 },
+      timeLeft: "Tomorrow 05:30",
+      category: "Caribbean Premier League",
+      viewers: 8760
+    },
+    {
+      id: "wcpl-1",
       homeTeam: "Barbados Royals W",
       awayTeam: "Guyana Amazon Warriors W",
       homeFlag: "🏏",
@@ -83,7 +83,7 @@ const sampleMatches: { [key: string]: Match[] } = {
       odds: { home: 1.7, away: 2.38 },
       timeLeft: "Today 23:30",
       category: "Women's Caribbean Premier League",
-      viewers: 8760
+      viewers: 12450
     }
   ],
   soccer: [
@@ -129,6 +129,7 @@ const sampleMatches: { [key: string]: Match[] } = {
 
 export const BettingMarkets = ({ activeSport, onBetSelect }: BettingMarketsProps) => {
   const [activeTab, setActiveTab] = useState("featured");
+  const [selectedMatch, setSelectedMatch] = useState<string | null>(null);
   
   const matches = sampleMatches[activeSport] || [];
 

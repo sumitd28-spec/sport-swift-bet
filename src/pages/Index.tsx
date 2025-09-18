@@ -4,6 +4,7 @@ import { TopNavbar } from "@/components/TopNavbar";
 import { HeroSection } from "@/components/HeroSection";
 import { BettingMarkets } from "@/components/BettingMarkets";
 import { BetSlip } from "@/components/BetSlip";
+import { MyBets } from "@/components/MyBets";
 import { AuthModal } from "@/components/AuthModal";
 import { useToast } from "@/hooks/use-toast";
 
@@ -16,6 +17,7 @@ const Index = () => {
   const [activeSport, setActiveSport] = useState("cricket");
   const [user, setUser] = useState<{ name: string; balance: number } | null>(null);
   const [bets, setBets] = useState<any[]>([]);
+  const [myBets, setMyBets] = useState<any[]>([]);
   const { toast } = useToast();
 
   const handleBetSelect = (bet: any) => {
@@ -26,6 +28,13 @@ const Index = () => {
     };
     
     setBets(prev => [...prev, newBet]);
+    setMyBets(prev => [...prev, { 
+      id: newBet.id,
+      runnerName: bet.label || `${bet.teamName || 'Unknown'}`,
+      betPrice: bet.odds,
+      betSize: bet.size || '0',
+      type: 'unmatched'
+    }]);
     setIsBetSlipOpen(true);
     
     toast({
@@ -36,6 +45,7 @@ const Index = () => {
 
   const handleRemoveBet = (betId: string) => {
     setBets(prev => prev.filter(bet => bet.id !== betId));
+    setMyBets(prev => prev.filter(bet => bet.id !== betId));
     toast({
       title: "Bet removed",
       description: "Selection removed from bet slip",
@@ -82,6 +92,22 @@ const Index = () => {
     toast({
       title: "Welcome to SportExch!",
       description: `Successfully ${authMode === 'login' ? 'logged in' : 'registered'}`,
+    });
+  };
+
+  const handleRemoveMyBet = (betId: string) => {
+    setMyBets(prev => prev.filter(bet => bet.id !== betId));
+    setBets(prev => prev.filter(bet => bet.id !== betId));
+    toast({
+      title: "Bet cancelled",
+      description: "Bet removed from queue",
+    });
+  };
+
+  const handleRefreshMyBets = () => {
+    toast({
+      title: "Refreshed",
+      description: "Betting data updated",
     });
   };
 
@@ -197,20 +223,33 @@ const Index = () => {
             setIsSidebarOpen(false);
           }}
         />
-        
-        <main className="flex-1 lg:ml-80">
-          {renderContent()}
-        </main>
-        
-        <BetSlip
-          bets={bets}
-          onRemoveBet={handleRemoveBet}
-          onUpdateStake={handleUpdateStake}
-          onPlaceBets={handlePlaceBets}
-          isOpen={isBetSlipOpen}
-          onClose={() => setIsBetSlipOpen(false)}
-        />
+        <div className="flex">
+          <main className="flex-1 lg:ml-80">
+            {renderContent()}
+          </main>
+          
+          {/* Right Sidebar - My Bets */}
+          <div className="hidden lg:block w-96 bg-white border-l border-gray-200">
+            <div className="p-4">
+              <MyBets 
+                bets={myBets}
+                onRemoveBet={handleRemoveMyBet}
+                onRefresh={handleRefreshMyBets}
+              />
+            </div>
+          </div>
+        </div>
       </div>
+
+      
+      <BetSlip
+        bets={bets}
+        onRemoveBet={handleRemoveBet}
+        onUpdateStake={handleUpdateStake}
+        onPlaceBets={handlePlaceBets}
+        isOpen={isBetSlipOpen}
+        onClose={() => setIsBetSlipOpen(false)}
+      />
 
       {/* Floating Bet Slip Toggle */}
       {bets.length > 0 && (
