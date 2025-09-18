@@ -30,15 +30,15 @@ export const MyBets = ({ bets = [], onRemoveBet, onRefresh }: MyBetsProps) => {
   };
 
   return (
-    <Card className="w-full bg-white border border-gray-200">
-      <CardHeader className="pb-3">
+    <Card className="w-full bg-card border-border shadow-card animate-fade-in">
+      <CardHeader className="pb-3 bg-primary text-primary-foreground">
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg font-semibold">My Bets</CardTitle>
           <Button 
             variant="ghost" 
             size="sm"
             onClick={onRefresh}
-            className="p-1"
+            className="p-1 text-primary-foreground hover:bg-primary-dark transition-smooth"
           >
             <RefreshCw className="h-4 w-4" />
           </Button>
@@ -47,11 +47,11 @@ export const MyBets = ({ bets = [], onRemoveBet, onRefresh }: MyBetsProps) => {
       
       <CardContent className="p-0">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-2 rounded-none border-b">
-            <TabsTrigger value="unmatched" className="rounded-none">
+          <TabsList className="grid w-full grid-cols-2 rounded-none border-b bg-muted">
+            <TabsTrigger value="unmatched" className="rounded-none data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-smooth">
               Unmatched Bets
             </TabsTrigger>
-            <TabsTrigger value="matched" className="rounded-none">
+            <TabsTrigger value="matched" className="rounded-none data-[state=active]:bg-accent data-[state=active]:text-accent-foreground transition-smooth">
               Matched Bets
             </TabsTrigger>
           </TabsList>
@@ -71,12 +71,12 @@ export const MyBets = ({ bets = [], onRemoveBet, onRefresh }: MyBetsProps) => {
               )}
               
               {unmatchedBets.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
+                <div className="text-center py-8 text-muted-foreground">
                   <p className="text-sm">No unmatched bets</p>
                 </div>
               ) : (
                 <div className="space-y-2">
-                  <div className="grid grid-cols-12 gap-2 text-xs font-medium text-gray-600 border-b pb-2">
+                  <div className="grid grid-cols-12 gap-2 text-xs font-medium text-muted-foreground border-b border-border pb-2">
                     <div className="col-span-4">Runner Name</div>
                     <div className="col-span-3">Bet Price</div>
                     <div className="col-span-3">Bet Size</div>
@@ -84,10 +84,10 @@ export const MyBets = ({ bets = [], onRemoveBet, onRefresh }: MyBetsProps) => {
                   </div>
                   
                   {unmatchedBets.map((bet) => (
-                    <div key={bet.id} className="grid grid-cols-12 gap-2 text-xs py-2 border-b border-gray-100">
-                      <div className="col-span-4 font-medium">{bet.runnerName}</div>
-                      <div className="col-span-3 text-blue-600 font-medium">{bet.betPrice.toFixed(2)}</div>
-                      <div className="col-span-3 font-medium">{bet.betSize}</div>
+                    <div key={bet.id} className="grid grid-cols-12 gap-2 text-xs py-2 border-b border-border hover:bg-muted/50 transition-smooth">
+                      <div className="col-span-4 font-medium text-foreground">{bet.runnerName}</div>
+                      <div className="col-span-3 text-primary font-medium">{bet.betPrice.toFixed(2)}</div>
+                      <div className="col-span-3 font-medium text-foreground">{bet.betSize}</div>
                       <div className="col-span-2">
                         <Button 
                           variant="ghost" 
@@ -120,22 +120,22 @@ export const MyBets = ({ bets = [], onRemoveBet, onRefresh }: MyBetsProps) => {
           <TabsContent value="matched" className="mt-0">
             <div className="p-4">
               {matchedBets.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
+                <div className="text-center py-8 text-muted-foreground">
                   <p className="text-sm">No matched bets</p>
                 </div>
               ) : (
                 <div className="space-y-2">
-                  <div className="grid grid-cols-12 gap-2 text-xs font-medium text-gray-600 border-b pb-2">
+                  <div className="grid grid-cols-12 gap-2 text-xs font-medium text-muted-foreground border-b border-border pb-2">
                     <div className="col-span-4">Runner Name</div>
                     <div className="col-span-3">Bet Price</div>
                     <div className="col-span-5">Bet Size</div>
                   </div>
                   
                   {matchedBets.map((bet) => (
-                    <div key={bet.id} className="grid grid-cols-12 gap-2 text-xs py-2 border-b border-gray-100">
-                      <div className="col-span-4 font-medium">{bet.runnerName}</div>
-                      <div className="col-span-3 text-green-600 font-medium">{bet.betPrice.toFixed(2)}</div>
-                      <div className="col-span-5 font-medium">{bet.betSize}</div>
+                    <div key={bet.id} className="grid grid-cols-12 gap-2 text-xs py-2 border-b border-border hover:bg-muted/50 transition-smooth">
+                      <div className="col-span-4 font-medium text-foreground">{bet.runnerName}</div>
+                      <div className="col-span-3 text-success font-medium">{bet.betPrice.toFixed(2)}</div>
+                      <div className="col-span-5 font-medium text-foreground">{bet.betSize}</div>
                     </div>
                   ))}
                 </div>

@@ -43,7 +43,7 @@ export const BackLayOdds = ({ odds, onBetSelect, teamName, matchId }: BackLayOdd
             variant="ghost"
             size="sm"
             onClick={() => handleBackBet(back.price, back.size)}
-            className="bg-blue-100 hover:bg-blue-200 text-blue-900 border border-blue-200 p-1 h-auto flex flex-col text-xs"
+            className="bg-accent/10 hover:bg-accent/20 text-accent-foreground border border-accent/30 p-1 h-auto flex flex-col text-xs transition-smooth hover:scale-105"
           >
             <div className="font-semibold">{back.price.toFixed(2)}</div>
             <div className="text-xs opacity-75">{back.size}</div>
@@ -59,7 +59,7 @@ export const BackLayOdds = ({ odds, onBetSelect, teamName, matchId }: BackLayOdd
             variant="ghost"
             size="sm"
             onClick={() => handleLayBet(lay.price, lay.size)}
-            className="bg-pink-100 hover:bg-pink-200 text-pink-900 border border-pink-200 p-1 h-auto flex flex-col text-xs"
+            className="bg-destructive/10 hover:bg-destructive/20 text-destructive-foreground border border-destructive/30 p-1 h-auto flex flex-col text-xs transition-smooth hover:scale-105"
           >
             <div className="font-semibold">{lay.price.toFixed(2)}</div>
             <div className="text-xs opacity-75">{lay.size}</div>

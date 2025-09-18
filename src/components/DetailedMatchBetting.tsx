@@ -51,40 +51,42 @@ export const DetailedMatchBetting = ({ match, onBetSelect }: DetailedMatchBettin
   return (
     <div className="space-y-4">
       {/* Match Header */}
-      <Card className="bg-gray-50 border-gray-200">
+      <Card className="bg-card border-border shadow-card animate-fade-in">
         <CardContent className="p-4">
           <div className="grid grid-cols-12 gap-4 text-sm">
             <div className="col-span-4">
               <div className="mb-2">
-                <span className="font-medium">StartTime:</span> {match.startTime}
+                <span className="font-medium text-muted-foreground">StartTime:</span> 
+                <span className="ml-2 text-foreground">{match.startTime}</span>
               </div>
               <div>
-                <span className="font-medium">Time Remaining:</span> {match.timeRemaining}
+                <span className="font-medium text-muted-foreground">Time Remaining:</span> 
+                <span className="ml-2 text-accent font-semibold">{match.timeRemaining}</span>
               </div>
             </div>
             <div className="col-span-4 text-center">
-              <div className="font-medium">Number of Winner</div>
-              <div className="text-lg font-bold">1</div>
+              <div className="font-medium text-muted-foreground">Number of Winner</div>
+              <div className="text-lg font-bold text-primary">1</div>
             </div>
             <div className="col-span-4 text-right">
-              <div className="font-medium">Market Liability</div>
-              <div className="text-lg font-bold">0.00</div>
+              <div className="font-medium text-muted-foreground">Market Liability</div>
+              <div className="text-lg font-bold text-success">0.00</div>
             </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Match Odds */}
-      <Card className="border-gray-200">
-        <CardHeader className="bg-orange-400 text-white p-3">
+      <Card className="border-border shadow-card animate-fade-in">
+        <CardHeader className="bg-primary text-primary-foreground p-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="bg-orange-500 px-2 py-1 rounded text-xs font-semibold">Ladder</span>
+              <span className="bg-primary-dark px-2 py-1 rounded text-xs font-semibold">Ladder</span>
               <span className="font-medium">Match Odds</span>
             </div>
             <div className="flex items-center gap-4 text-sm">
               <span>MATCHED: {match.matched}</span>
-              <Button variant="ghost" size="sm" className="text-white hover:bg-orange-500 p-1">
+              <Button variant="ghost" size="sm" className="text-primary-foreground hover:bg-primary-dark p-1 transition-smooth">
                 <Info className="h-4 w-4" />
               </Button>
             </div>
@@ -92,17 +94,17 @@ export const DetailedMatchBetting = ({ match, onBetSelect }: DetailedMatchBettin
         </CardHeader>
         
         <CardContent className="p-0">
-          <div className="grid grid-cols-12 bg-gray-100 text-sm font-medium text-gray-700 py-2 px-4">
+          <div className="grid grid-cols-12 bg-muted text-sm font-medium text-muted-foreground py-2 px-4">
             <div className="col-span-6"></div>
             <div className="col-span-3 text-center">Back</div>
             <div className="col-span-3 text-center">Lay</div>
           </div>
           
           {/* Home Team */}
-          <div className="grid grid-cols-12 items-center py-3 px-4 border-b border-gray-100">
+          <div className="grid grid-cols-12 items-center py-3 px-4 border-b border-border hover:bg-muted/50 transition-smooth">
             <div className="col-span-6 flex items-center gap-3">
               <span className="text-2xl">{match.homeFlag}</span>
-              <span className="font-medium">{match.homeTeam}</span>
+              <span className="font-medium text-foreground">{match.homeTeam}</span>
             </div>
             <div className="col-span-6">
               <BackLayOdds 
@@ -115,10 +117,10 @@ export const DetailedMatchBetting = ({ match, onBetSelect }: DetailedMatchBettin
           </div>
           
           {/* Away Team */}
-          <div className="grid grid-cols-12 items-center py-3 px-4">
+          <div className="grid grid-cols-12 items-center py-3 px-4 hover:bg-muted/50 transition-smooth">
             <div className="col-span-6 flex items-center gap-3">
               <span className="text-2xl">{match.awayFlag}</span>
-              <span className="font-medium">{match.awayTeam}</span>
+              <span className="font-medium text-foreground">{match.awayTeam}</span>
             </div>
             <div className="col-span-6">
               <BackLayOdds 
@@ -134,21 +136,21 @@ export const DetailedMatchBetting = ({ match, onBetSelect }: DetailedMatchBettin
 
       {/* Betting Lines */}
       {match.lines?.map((line) => (
-        <Card key={line.name} className="border-gray-200">
+        <Card key={line.name} className="border-border shadow-card animate-fade-in">
           <CardHeader 
-            className="bg-blue-600 text-white p-3 cursor-pointer"
+            className="bg-accent text-accent-foreground p-3 cursor-pointer hover:bg-accent/90 transition-smooth"
             onClick={() => toggleLine(line.name)}
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Info className="h-4 w-4" />
                 <span className="font-medium">{line.name}</span>
-                <Badge variant="secondary" className="bg-orange-500 text-white text-xs">
+                <Badge variant="secondary" className="bg-primary text-primary-foreground text-xs">
                   Ladder
                 </Badge>
               </div>
               <div className="flex items-center gap-2">
-                <Button variant="ghost" size="sm" className="text-white hover:bg-blue-700 text-xs">
+                <Button variant="ghost" size="sm" className="text-accent-foreground hover:bg-accent/80 text-xs transition-smooth">
                   Book
                 </Button>
                 {expandedLines.includes(line.name) ? (
@@ -162,16 +164,16 @@ export const DetailedMatchBetting = ({ match, onBetSelect }: DetailedMatchBettin
           
           {expandedLines.includes(line.name) && (
             <CardContent className="p-0">
-              <div className="grid grid-cols-12 bg-gray-100 text-sm font-medium text-gray-700 py-2 px-4">
+              <div className="grid grid-cols-12 bg-muted text-sm font-medium text-muted-foreground py-2 px-4">
                 <div className="col-span-6"></div>
                 <div className="col-span-3 text-center">Back</div>
                 <div className="col-span-3 text-center">Lay</div>
               </div>
               
               {Object.entries(line.odds).map(([option, odds]) => (
-                <div key={option} className="grid grid-cols-12 items-center py-3 px-4 border-b border-gray-100 last:border-b-0">
+                <div key={option} className="grid grid-cols-12 items-center py-3 px-4 border-b border-border last:border-b-0 hover:bg-muted/50 transition-smooth">
                   <div className="col-span-6">
-                    <span className="font-medium">{option}</span>
+                    <span className="font-medium text-foreground">{option}</span>
                   </div>
                   <div className="col-span-6">
                     <BackLayOdds 
