@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Clock, TrendingUp, Star, Eye } from "lucide-react";
+import { Clock, TrendingUp, Star, Eye, Calendar, Users } from "lucide-react";
 
 interface Match {
   id: string;
@@ -31,26 +31,59 @@ const sampleMatches: { [key: string]: Match[] } = {
   cricket: [
     {
       id: "c1",
-      homeTeam: "India",
-      awayTeam: "Australia",
+      homeTeam: "India W",
+      awayTeam: "Australia W",
       homeFlag: "🇮🇳",
       awayFlag: "🇦🇺",
-      odds: { home: 2.1, away: 1.8 },
+      odds: { home: 2.52, away: 1.65 },
       isLive: true,
-      timeLeft: "2nd Innings",
-      category: "Test Match",
+      timeLeft: "Coming Up",
+      category: "Women's One Day International",
       viewers: 15420
     },
     {
       id: "c2",
-      homeTeam: "England",
-      awayTeam: "Pakistan",
-      homeFlag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-      awayFlag: "🇵🇰",
-      odds: { home: 1.9, away: 2.2 },
-      timeLeft: "Starts in 2h",
-      category: "ODI",
+      homeTeam: "Pakistan W",
+      awayTeam: "United Arab Emirates",
+      homeFlag: "🇵🇰",
+      awayFlag: "🇦🇪",
+      odds: { home: 1.08, away: 11.5 },
+      timeLeft: "Coming Up",
+      category: "Asia Cup",
       viewers: 8930
+    },
+    {
+      id: "c3",
+      homeTeam: "St. Lucia Kings",
+      awayTeam: "Guyana Amazon Warriors",
+      homeFlag: "🏏",
+      awayFlag: "🏏",
+      odds: { home: 2.18, away: 1.85 },
+      timeLeft: "Coming Up",
+      category: "Caribbean Premier League",
+      viewers: 12450
+    },
+    {
+      id: "c4",
+      homeTeam: "Ireland",
+      awayTeam: "England",
+      homeFlag: "🇮🇪",
+      awayFlag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      odds: { home: 13.5, away: 1.07 },
+      timeLeft: "Today 15:00",
+      category: "International Twenty20 Matches",
+      viewers: 25340
+    },
+    {
+      id: "c5",
+      homeTeam: "Barbados Royals W",
+      awayTeam: "Guyana Amazon Warriors W",
+      homeFlag: "🏏",
+      awayFlag: "🏏",
+      odds: { home: 1.7, away: 2.38 },
+      timeLeft: "Today 23:30",
+      category: "Women's Caribbean Premier League",
+      viewers: 8760
     }
   ],
   soccer: [
@@ -102,7 +135,7 @@ export const BettingMarkets = ({ activeSport, onBetSelect }: BettingMarketsProps
   const renderOddsButton = (odds: number, label: string, matchId: string, type: string) => (
     <button
       onClick={() => onBetSelect({ matchId, type, odds, label })}
-      className="odds-button min-w-[60px] text-center"
+      className="bg-blue-100 hover:bg-blue-200 text-blue-900 font-semibold px-4 py-2 rounded min-w-[60px] text-center transition-colors border border-blue-200"
     >
       {odds.toFixed(2)}
     </button>
@@ -136,7 +169,7 @@ export const BettingMarkets = ({ activeSport, onBetSelect }: BettingMarketsProps
           <TabsTrigger value="popular">Popular</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="featured" className="space-y-4 mt-6">
+        <TabsContent value="featured" className="space-y-3 mt-6">
           {matches.length === 0 ? (
             <Card>
               <CardContent className="p-8 text-center">
@@ -146,72 +179,79 @@ export const BettingMarkets = ({ activeSport, onBetSelect }: BettingMarketsProps
             </Card>
           ) : (
             matches.map((match) => (
-              <Card key={match.id} className="shadow-card hover:shadow-elegant transition-smooth">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Badge variant={match.isLive ? "destructive" : "secondary"}>
-                        {match.isLive ? "LIVE" : "UPCOMING"}
-                      </Badge>
-                      <span className="text-sm text-muted-foreground">{match.category}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      {match.viewers && (
-                        <div className="flex items-center gap-1">
-                          <Eye className="h-3 w-3" />
-                          {match.viewers.toLocaleString()}
+              <Card key={match.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                <div className="bg-blue-900 text-white px-4 py-2 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm font-medium">{match.category}</span>
+                    <Badge variant={match.isLive ? "destructive" : "secondary"} className="text-xs">
+                      {match.isLive ? "LIVE" : "Coming Up"}
+                    </Badge>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Clock className="h-3 w-3" />
+                    <span>{match.timeLeft}</span>
+                  </div>
+                </div>
+                
+                <CardContent className="p-4">
+                  <div className="grid grid-cols-12 gap-4">
+                    {/* Teams and Odds */}
+                    <div className="col-span-12 space-y-3">
+                      {/* Header with odds labels */}
+                      <div className="grid grid-cols-12 items-center text-sm font-medium text-gray-600">
+                        <div className="col-span-6"></div>
+                        <div className="col-span-2 text-center">1</div>
+                        <div className="col-span-2 text-center">X</div>
+                        <div className="col-span-2 text-center">2</div>
+                      </div>
+                      
+                      {/* Match row */}
+                      <div className="grid grid-cols-12 items-center py-2 border-b border-gray-100">
+                        <div className="col-span-6">
+                          <div className="space-y-1">
+                            <div className="flex items-center gap-2 text-sm font-medium">
+                              <span className="text-lg">{match.homeFlag}</span>
+                              <span>{match.homeTeam}</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm font-medium">
+                              <span className="text-lg">{match.awayFlag}</span>
+                              <span>{match.awayTeam}</span>
+                            </div>
+                          </div>
                         </div>
-                      )}
-                      <div className="flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
-                        {match.timeLeft}
+                        <div className="col-span-2 text-center">
+                          {renderOddsButton(match.odds.home, "Home", match.id, "home")}
+                        </div>
+                        <div className="col-span-2 text-center">
+                          {match.odds.draw ? renderOddsButton(match.odds.draw, "Draw", match.id, "draw") : (
+                            <span className="text-gray-400 text-sm">-</span>
+                          )}
+                        </div>
+                        <div className="col-span-2 text-center">
+                          {renderOddsButton(match.odds.away, "Away", match.id, "away")}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </CardHeader>
-                
-                <CardContent>
-                  <div className="grid grid-cols-12 gap-4 items-center">
-                    {/* Teams */}
-                    <div className="col-span-8 space-y-3">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <span className="text-2xl">{match.homeFlag}</span>
-                          <span className="font-semibold">{match.homeTeam}</span>
-                        </div>
-                        {renderOddsButton(match.odds.home, "Home", match.id, "home")}
-                      </div>
-                      
-                      {match.odds.draw && (
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            <span className="text-2xl">🤝</span>
-                            <span className="text-muted-foreground">Draw</span>
-                          </div>
-                          {renderOddsButton(match.odds.draw, "Draw", match.id, "draw")}
+                  
+                  {/* Additional info */}
+                  <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+                    <div className="flex items-center gap-4 text-xs text-gray-500">
+                      {match.viewers && (
+                        <div className="flex items-center gap-1">
+                          <Users className="h-3 w-3" />
+                          <span>{match.viewers.toLocaleString()} viewers</span>
                         </div>
                       )}
-                      
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <span className="text-2xl">{match.awayFlag}</span>
-                          <span className="font-semibold">{match.awayTeam}</span>
-                        </div>
-                        {renderOddsButton(match.odds.away, "Away", match.id, "away")}
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-3 w-3" />
+                        <span>Full Time Result</span>
                       </div>
                     </div>
-
-                    {/* Actions */}
-                    <div className="col-span-4 flex flex-col gap-2">
-                      <Button variant="outline" size="sm" className="w-full">
-                        <TrendingUp className="h-4 w-4 mr-2" />
-                        More Markets
-                      </Button>
-                      <Button variant="ghost" size="sm" className="w-full">
-                        <Star className="h-4 w-4 mr-2" />
-                        Add to Favorites
-                      </Button>
-                    </div>
+                    <Button variant="ghost" size="sm" className="text-xs">
+                      <Star className="h-3 w-3 mr-1" />
+                      Add to Favorites
+                    </Button>
                   </div>
                 </CardContent>
               </Card>

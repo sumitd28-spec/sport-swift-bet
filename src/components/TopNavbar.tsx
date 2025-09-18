@@ -27,11 +27,29 @@ export const TopNavbar = ({ onMenuClick, onAuthClick, user }: TopNavbarProps) =>
           </div>
         </div>
 
-        {/* Center - Welcome message */}
-        <div className="hidden md:block">
-          <p className="text-sm text-muted-foreground">
-            WELCOME TO SPORTEXCHANGE - Live Sports Betting Platform
-          </p>
+        {/* Center - Navigation tabs */}
+        <div className="hidden md:flex items-center gap-1">
+          <Button variant="ghost" size="sm" className="text-sm font-medium">
+            <span className="text-orange-500">●</span> In Play
+          </Button>
+          <Button variant="ghost" size="sm" className="text-sm font-medium">
+            <span className="text-blue-500">●</span> Cricket
+          </Button>
+          <Button variant="ghost" size="sm" className="text-sm font-medium">
+            <span className="text-green-500">●</span> Soccer
+          </Button>
+          <Button variant="ghost" size="sm" className="text-sm font-medium">
+            <span className="text-yellow-500">●</span> Tennis
+          </Button>
+          <Button variant="ghost" size="sm" className="text-sm font-medium">
+            <span className="text-purple-500">●</span> Premium Races
+          </Button>
+          <Button variant="ghost" size="sm" className="text-sm font-medium">
+            <span className="text-red-500">●</span> Casino
+          </Button>
+          <Button variant="ghost" size="sm" className="text-sm font-medium">
+            <span className="text-gray-500">●</span> Help & Support
+          </Button>
         </div>
 
         {/* Right side - User actions */}

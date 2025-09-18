@@ -25,6 +25,8 @@ const sportsCategories = [
   { id: "darts", name: "Darts", icon: "🎯", count: 6 },
   { id: "golf", name: "Golf", icon: "⛳", count: 15 },
   { id: "mma", name: "Mixed Martial Arts", icon: "🥋", count: 4 },
+  { id: "casino", name: "Casino", icon: "🎰", count: 25 },
+  { id: "esports", name: "Esports", icon: "🎮", count: 16 },
 ];
 
 const topNavItems = [
@@ -79,15 +81,15 @@ export const Sidebar = ({
       
       {/* Sidebar */}
       <div className={`
-        fixed left-0 top-0 h-full bg-primary text-white z-50 transition-transform duration-300 ease-in-out
+        fixed left-0 top-0 h-full bg-blue-900 text-white z-50 transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         lg:translate-x-0 lg:static lg:z-auto
         w-80 flex flex-col
       `}>
         {/* Header */}
-        <div className="p-4 border-b border-white/20">
+        <div className="p-4 border-b border-white/20 bg-blue-800">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-2xl font-bold">SPORTEXCH</h1>
+            <h1 className="text-xl font-bold text-white">TOMEXCH</h1>
             <Button 
               variant="ghost" 
               size="sm"
@@ -96,6 +98,10 @@ export const Sidebar = ({
             >
               <X className="h-5 w-5" />
             </Button>
+          </div>
+          
+          <div className="text-sm text-blue-200 mb-3">
+            WELCOME TO TOMEXCHANGE.
           </div>
           
           {/* Search */}
@@ -150,17 +156,17 @@ export const Sidebar = ({
                 {["cricket", "soccer", "tennis"].map((sport) => {
                   const sportData = sportsCategories.find(s => s.id === sport);
                   return (
-                    <button
+                     <button
                       key={sport}
                       onClick={() => onSportChange(sport)}
                       className={`
-                        flex items-center gap-3 px-4 py-2 text-white/80 hover:text-white hover:bg-white/5 transition-smooth cursor-pointer rounded-lg mx-2 w-full text-left
-                        ${activeSport === sport ? 'bg-white/10 text-white' : ''}
+                        flex items-center gap-3 px-3 py-2 text-white/80 hover:text-white hover:bg-blue-800 transition-smooth cursor-pointer rounded mx-2 w-full text-left text-sm
+                        ${activeSport === sport ? 'bg-blue-800 text-white' : ''}
                       `}
                     >
-                      <span className="text-lg">{sportData?.icon}</span>
-                      <span className="text-sm">{sportData?.name}</span>
-                      <span className="text-xs text-white/60 ml-auto">{sportData?.count}</span>
+                      <span className="text-base">{sportData?.icon}</span>
+                      <span className="flex-1">{sportData?.name}</span>
+                      <span className="text-xs text-blue-300 bg-blue-800 px-2 py-0.5 rounded-full min-w-[24px] text-center">{sportData?.count}</span>
                     </button>
                   );
                 })}
@@ -188,13 +194,13 @@ export const Sidebar = ({
                     key={sport.id}
                     onClick={() => onSportChange(sport.id)}
                     className={`
-                      flex items-center gap-3 px-4 py-2 text-white/80 hover:text-white hover:bg-white/5 transition-smooth cursor-pointer rounded-lg mx-2 w-full text-left
-                      ${activeSport === sport.id ? 'bg-white/10 text-white' : ''}
+                      flex items-center gap-3 px-3 py-2 text-white/80 hover:text-white hover:bg-blue-800 transition-smooth cursor-pointer rounded mx-2 w-full text-left text-sm
+                      ${activeSport === sport.id ? 'bg-blue-800 text-white' : ''}
                     `}
                   >
-                    <span className="text-lg">{sport.icon}</span>
-                    <span className="text-sm">{sport.name}</span>
-                    <span className="text-xs text-white/60 ml-auto">{sport.count}</span>
+                    <span className="text-base">{sport.icon}</span>
+                    <span className="flex-1">{sport.name}</span>
+                    <span className="text-xs text-blue-300 bg-blue-800 px-2 py-0.5 rounded-full min-w-[24px] text-center">{sport.count}</span>
                   </button>
                 ))}
               </div>
