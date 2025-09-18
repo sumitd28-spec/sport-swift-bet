@@ -163,10 +163,10 @@ All colors MUST be HSL.
   }
 
   .sport-nav-item {
-    @apply flex items-center gap-3 px-4 py-3 text-white hover:bg-white/10 transition-smooth cursor-pointer rounded-lg mx-2;
+    @apply flex items-center gap-3 px-4 py-3 text-primary-foreground hover:bg-primary-foreground/10 transition-smooth cursor-pointer rounded-lg mx-2;
   }
 
   .sport-nav-item.active {
-    @apply bg-white/20;
+    @apply bg-accent text-accent-foreground;
   }
 }

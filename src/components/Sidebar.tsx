@@ -81,37 +81,37 @@ export const Sidebar = ({
       
       {/* Sidebar */}
       <div className={`
-        fixed left-0 top-0 h-full bg-blue-900 text-white z-50 transition-transform duration-300 ease-in-out
+        fixed left-0 top-0 h-full bg-primary text-primary-foreground z-50 transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         lg:translate-x-0 lg:static lg:z-auto
-        w-80 flex flex-col
+        w-80 flex flex-col shadow-elegant
       `}>
         {/* Header */}
-        <div className="p-4 border-b border-white/20 bg-blue-800">
+        <div className="p-4 border-b border-primary-foreground/20 bg-primary-dark">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-xl font-bold text-white">TOMEXCH</h1>
+            <h1 className="text-xl font-bold text-primary-foreground">TOMEXCH</h1>
             <Button 
               variant="ghost" 
               size="sm"
               onClick={onClose}
-              className="lg:hidden text-white hover:bg-white/10"
+              className="lg:hidden text-primary-foreground hover:bg-primary-foreground/10 transition-smooth"
             >
               <X className="h-5 w-5" />
             </Button>
           </div>
           
-          <div className="text-sm text-blue-200 mb-3">
+          <div className="text-sm text-primary-foreground/80 mb-3">
             WELCOME TO TOMEXCHANGE.
           </div>
           
           {/* Search */}
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-white/60" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-primary-foreground/60" />
             <Input
               placeholder="Search Market..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:bg-white/20"
+              className="pl-10 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60 focus:bg-primary-foreground/20 transition-smooth"
             />
           </div>
         </div>
@@ -160,13 +160,13 @@ export const Sidebar = ({
                       key={sport}
                       onClick={() => onSportChange(sport)}
                       className={`
-                        flex items-center gap-3 px-3 py-2 text-white/80 hover:text-white hover:bg-blue-800 transition-smooth cursor-pointer rounded mx-2 w-full text-left text-sm
-                        ${activeSport === sport ? 'bg-blue-800 text-white' : ''}
+                        flex items-center gap-3 px-3 py-2 text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-darker transition-smooth cursor-pointer rounded mx-2 w-full text-left text-sm
+                        ${activeSport === sport ? 'bg-accent text-accent-foreground' : ''}
                       `}
                     >
                       <span className="text-base">{sportData?.icon}</span>
                       <span className="flex-1">{sportData?.name}</span>
-                      <span className="text-xs text-blue-300 bg-blue-800 px-2 py-0.5 rounded-full min-w-[24px] text-center">{sportData?.count}</span>
+                      <span className="text-xs text-primary-foreground/70 bg-primary-darker px-2 py-0.5 rounded-full min-w-[24px] text-center">{sportData?.count}</span>
                     </button>
                   );
                 })}
@@ -194,13 +194,13 @@ export const Sidebar = ({
                     key={sport.id}
                     onClick={() => onSportChange(sport.id)}
                     className={`
-                      flex items-center gap-3 px-3 py-2 text-white/80 hover:text-white hover:bg-blue-800 transition-smooth cursor-pointer rounded mx-2 w-full text-left text-sm
-                      ${activeSport === sport.id ? 'bg-blue-800 text-white' : ''}
+                      flex items-center gap-3 px-3 py-2 text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-darker transition-smooth cursor-pointer rounded mx-2 w-full text-left text-sm
+                      ${activeSport === sport.id ? 'bg-accent text-accent-foreground' : ''}
                     `}
                   >
                     <span className="text-base">{sport.icon}</span>
                     <span className="flex-1">{sport.name}</span>
-                    <span className="text-xs text-blue-300 bg-blue-800 px-2 py-0.5 rounded-full min-w-[24px] text-center">{sport.count}</span>
+                    <span className="text-xs text-primary-foreground/70 bg-primary-darker px-2 py-0.5 rounded-full min-w-[24px] text-center">{sport.count}</span>
                   </button>
                 ))}
               </div>
@@ -223,7 +223,7 @@ export const Sidebar = ({
         </div>
 
         {/* User Section */}
-        <div className="p-4 border-t border-white/20">
+        <div className="p-4 border-t border-primary-foreground/20">
           <button 
             onClick={() => onSectionChange("profile")}
             className="sport-nav-item w-full text-left"
