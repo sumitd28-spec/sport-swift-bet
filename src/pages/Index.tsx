@@ -90,7 +90,7 @@ const Index = () => {
   const handleAuth = (userData: any) => {
     setUser(userData);
     toast({
-      title: "Welcome to SportExch!",
+      title: "Welcome to ArenaExch!",
       description: `Successfully ${authMode === 'login' ? 'logged in' : 'registered'}`,
     });
   };

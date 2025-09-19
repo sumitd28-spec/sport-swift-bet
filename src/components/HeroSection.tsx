@@ -27,7 +27,7 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
             <div className="text-white space-y-8 animate-fade-in">
               <div className="space-y-4">
                 <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                  SPORT
+                  ARENA
                   <span className="text-accent">EXCH</span>
                 </h1>
                 <div className="text-2xl lg:text-4xl font-semibold">

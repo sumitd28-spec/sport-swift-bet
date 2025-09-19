@@ -64,7 +64,7 @@ export const AuthModal = ({
       <DialogContent className="sm:max-w-md max-w-[95vw] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-center text-xl sm:text-2xl font-bold">
-            {mode === 'login' ? 'Welcome Back' : 'Join SportExch'}
+            {mode === 'login' ? 'Welcome Back' : 'Join ArenaExch'}
           </DialogTitle>
           <DialogDescription className="text-center text-muted-foreground">
             {mode === 'login' ? 'Sign in to your account to continue' : 'Create your account to start betting'}
