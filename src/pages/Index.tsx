@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Sidebar } from "@/components/Sidebar";
 import { TopNavbar } from "@/components/TopNavbar";
 import { HeroSection } from "@/components/HeroSection";
@@ -7,6 +7,7 @@ import { BetSlip } from "@/components/BetSlip";
 import { MyBets } from "@/components/MyBets";
 import { AuthModal } from "@/components/AuthModal";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 
 const Index = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -15,10 +16,10 @@ const Index = () => {
   const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
   const [activeSection, setActiveSection] = useState("home");
   const [activeSport, setActiveSport] = useState("cricket");
-  const [user, setUser] = useState<{ name: string; balance: number } | null>(null);
   const [bets, setBets] = useState<any[]>([]);
   const [myBets, setMyBets] = useState<any[]>([]);
   const { toast } = useToast();
+  const { user, logout, updateBalance } = useAuth();
 
   const handleBetSelect = (bet: any) => {
     const newBet = {
@@ -77,7 +78,9 @@ const Index = () => {
     }
 
     // Simulate bet placement
-    setUser(prev => prev ? { ...prev, balance: prev.balance - totalStake } : null);
+    if (user) {
+      updateBalance(user.balance - totalStake);
+    }
     setBets([]);
     setIsBetSlipOpen(false);
     
@@ -88,9 +91,8 @@ const Index = () => {
   };
 
   const handleAuth = (userData: any) => {
-    setUser(userData);
     toast({
-      title: "Welcome to ArenaExch!",
+      title: "Welcome to ArenaX!",
       description: `Successfully ${authMode === 'login' ? 'logged in' : 'registered'}`,
     });
   };
@@ -120,6 +122,18 @@ const Index = () => {
     setActiveSection("home");
     setActiveSport("cricket");
   };
+
+  // Listen for quick sport changes from navbar
+  useEffect(() => {
+    const handleQuickSport = (event: CustomEvent) => {
+      const { sport } = event.detail;
+      setActiveSport(sport);
+      setActiveSection("home");
+    };
+
+    window.addEventListener('quick-sport', handleQuickSport as EventListener);
+    return () => window.removeEventListener('quick-sport', handleQuickSport as EventListener);
+  }, []);
 
   const renderContent = () => {
     switch (activeSection) {
@@ -279,7 +293,7 @@ const Index = () => {
                 <div className="space-y-4 max-w-md mx-auto">
                   <p className="text-muted-foreground text-sm sm:text-base">Please log in to view your account</p>
                   <div className="bg-card p-4 sm:p-6 rounded-lg border animate-fade-in">
-                    <h3 className="font-bold mb-2">Join TomExch Today!</h3>
+                    <h3 className="font-bold mb-2">Join ArenaX Today!</h3>
                     <p className="text-sm text-muted-foreground mb-4">Start betting with the best odds and promotions</p>
                     <button 
                       onClick={() => handleAuthClick('register')}
@@ -310,6 +324,7 @@ const Index = () => {
       <TopNavbar 
         onMenuClick={() => setIsSidebarOpen(true)}
         onAuthClick={handleAuthClick}
+        onLogout={logout}
         user={user}
       />
       

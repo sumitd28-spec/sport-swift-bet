@@ -89,7 +89,9 @@ export const Sidebar = ({
         {/* Header */}
         <div className="p-4 border-b border-primary-foreground/20 bg-primary-dark">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-xl font-bold text-primary-foreground">ARENAEXCH</h1>
+            <h1 className="text-xl font-bold text-primary-foreground">
+              <span>Arena</span><span className="text-accent text-2xl">X</span>
+            </h1>
             <Button 
               variant="ghost" 
               size="sm"
@@ -101,7 +103,7 @@ export const Sidebar = ({
           </div>
           
           <div className="text-sm text-primary-foreground/80 mb-3">
-            WELCOME TO ARENAEXCHANGE.
+            WELCOME TO ARENAX.
           </div>
           
           {/* Search */}
