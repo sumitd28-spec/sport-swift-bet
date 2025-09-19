@@ -15,18 +15,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const sportsCategories = [
-  { id: "cricket", name: "Cricket", icon: "🏏", count: 24 },
-  { id: "soccer", name: "Soccer", icon: "⚽", count: 156 },
-  { id: "tennis", name: "Tennis", icon: "🎾", count: 42 },
-  { id: "horse-racing", name: "Horse Racing", icon: "🏇", count: 18 },
-  { id: "greyhound", name: "Greyhound Racing", icon: "🐕", count: 12 },
-  { id: "basketball", name: "Basketball", icon: "🏀", count: 38 },
-  { id: "boxing", name: "Boxing", icon: "🥊", count: 8 },
-  { id: "darts", name: "Darts", icon: "🎯", count: 6 },
+  { id: "cricket", name: "Cricket", icon: "🏏", count: 145 },
+  { id: "soccer", name: "Soccer", icon: "⚽", count: 234 },
+  { id: "tennis", name: "Tennis", icon: "🎾", count: 89 },
+  { id: "horse-racing", name: "Horse Racing", icon: "🏇", count: 67 },
+  { id: "greyhound", name: "Greyhound Racing", icon: "🐕", count: 42 },
+  { id: "basketball", name: "Basketball", icon: "🏀", count: 45 },
+  { id: "boxing", name: "Boxing", icon: "🥊", count: 12 },
+  { id: "darts", name: "Darts", icon: "🎯", count: 8 },
   { id: "golf", name: "Golf", icon: "⛳", count: 15 },
-  { id: "mma", name: "Mixed Martial Arts", icon: "🥋", count: 4 },
-  { id: "casino", name: "Casino", icon: "🎰", count: 25 },
-  { id: "esports", name: "Esports", icon: "🎮", count: 16 },
+  { id: "mma", name: "MMA", icon: "🥋", count: 18 },
+  { id: "esports", name: "Esports", icon: "🎮", count: 56 },
 ];
 
 const topNavItems = [
@@ -89,7 +88,9 @@ export const Sidebar = ({
         {/* Header */}
         <div className="p-4 border-b border-primary-foreground/20 bg-primary-dark">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-xl font-bold text-primary-foreground">ARENAEXCH</h1>
+            <h1 className="text-xl font-bold text-primary-foreground">
+              ARENA <span className="text-2xl">X</span>
+            </h1>
             <Button 
               variant="ghost" 
               size="sm"

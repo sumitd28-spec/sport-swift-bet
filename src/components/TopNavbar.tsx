@@ -1,13 +1,41 @@
 import { Button } from "@/components/ui/button";
-import { Menu, LogIn, UserPlus, Bell } from "lucide-react";
+import { Menu, LogIn, UserPlus, Bell, LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface TopNavbarProps {
   onMenuClick: () => void;
   onAuthClick: (type: 'login' | 'register') => void;
   user?: { name: string; balance: number } | null;
+  onLogout?: () => void;
 }
 
-export const TopNavbar = ({ onMenuClick, onAuthClick, user }: TopNavbarProps) => {
+const sportFilters = [
+  { name: 'In Play', key: 'in-play', emoji: '🔴' },
+  { name: 'Cricket', key: 'cricket', emoji: '🏏' },
+  { name: 'Soccer', key: 'soccer', emoji: '⚽' },
+  { name: 'Tennis', key: 'tennis', emoji: '🎾' },
+  { name: 'Premium Races', key: 'premium', emoji: '🏇' },
+  { name: 'Casino', key: 'casino', emoji: '🎰' },
+  { name: 'Help', key: 'help', emoji: '❓' },
+];
+
+export const TopNavbar = ({ onMenuClick, onAuthClick, user, onLogout }: TopNavbarProps) => {
+  const navigate = useNavigate();
+
+  const handleSportClick = (sport: string) => {
+    if (sport === 'cricket' || sport === 'soccer') {
+      window.dispatchEvent(new CustomEvent('quick-sport', { detail: { sport } }));
+    }
+  };
+
+  const handleAuthClick = (type: 'login' | 'register') => {
+    if (type === 'login') {
+      navigate('/login');
+    } else {
+      onAuthClick(type);
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 bg-background border-b border-border shadow-sm z-30">
       <div className="flex items-center justify-between px-2 sm:px-4 py-2 sm:py-3 h-16">
@@ -23,39 +51,31 @@ export const TopNavbar = ({ onMenuClick, onAuthClick, user }: TopNavbarProps) =>
           </Button>
           
           <div className="hidden lg:block">
-            <h1 className="text-lg sm:text-xl font-bold text-primary">ARENAEXCH</h1>
+            <h1 className="text-lg sm:text-xl font-bold text-primary">
+              ARENA <span className="text-2xl">X</span>
+            </h1>
           </div>
           <div className="lg:hidden">
-            <h1 className="text-lg font-bold text-primary">ARENAEXCH</h1>
+            <h1 className="text-lg font-bold text-primary">
+              ARENA <span className="text-xl">X</span>
+            </h1>
           </div>
         </div>
 
-        {/* Center - Quick stats */}
-        <div className="hidden md:flex items-center gap-2 lg:gap-4">
-          <Button 
-            variant="ghost" 
-            size="sm"
-            className="flex items-center gap-1 bg-destructive/10 hover:bg-destructive/20 text-destructive px-3 py-1.5 rounded-full text-xs font-medium transition-smooth"
-          >
-            <div className="w-1.5 h-1.5 bg-current rounded-full animate-ping"></div>
-            <span>35 Live</span>
-          </Button>
-          <Button 
-            variant="ghost" 
-            size="sm"
-            className="flex items-center gap-1 bg-primary/10 hover:bg-primary/20 text-primary px-3 py-1.5 rounded-full text-xs font-medium transition-smooth"
-          >
-            <span>🏏</span>
-            <span>Cricket</span>
-          </Button>
-          <Button 
-            variant="ghost" 
-            size="sm"
-            className="flex items-center gap-1 bg-success/10 hover:bg-success/20 text-success px-3 py-1.5 rounded-full text-xs font-medium transition-smooth"
-          >
-            <span>⚽</span>
-            <span>Football</span>
-          </Button>
+        {/* Center - Sport filter chips */}
+        <div className="hidden md:flex items-center gap-1 lg:gap-2">
+          {sportFilters.map((filter) => (
+            <Button 
+              key={filter.key}
+              variant="ghost" 
+              size="sm"
+              onClick={() => handleSportClick(filter.key)}
+              className="flex items-center gap-1 bg-primary/10 hover:bg-primary/20 text-primary px-2 lg:px-3 py-1.5 rounded-full text-xs font-medium transition-smooth"
+            >
+              <span>{filter.emoji}</span>
+              <span className="hidden lg:inline">{filter.name}</span>
+            </Button>
+          ))}
         </div>
 
         {/* Right side - User actions */}
@@ -81,11 +101,21 @@ export const TopNavbar = ({ onMenuClick, onAuthClick, user }: TopNavbarProps) =>
               >
                 Account
               </Button>
+              {onLogout && (
+                <Button 
+                  onClick={onLogout}
+                  variant="ghost" 
+                  size="sm"
+                  className="text-xs sm:text-sm px-2"
+                >
+                  <LogOut className="h-3 w-3 sm:h-4 sm:w-4" />
+                </Button>
+              )}
             </>
           ) : (
             <>
               <Button 
-                onClick={() => onAuthClick('login')}
+                onClick={() => handleAuthClick('login')}
                 variant="outline" 
                 size="sm"
                 className="hidden sm:flex items-center gap-1 text-xs px-2"
@@ -94,7 +124,7 @@ export const TopNavbar = ({ onMenuClick, onAuthClick, user }: TopNavbarProps) =>
                 Login
               </Button>
               <Button 
-                onClick={() => onAuthClick('register')}
+                onClick={() => handleAuthClick('register')}
                 className="flex items-center gap-1 text-xs px-2 sm:px-4 bg-primary hover:bg-primary-dark"
                 size="sm"
               >
