@@ -24,7 +24,6 @@ export const AuthModal = ({
   onAuth 
 }: AuthModalProps) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -36,33 +35,24 @@ export const AuthModal = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
     
     if (mode === 'login') {
-      // Demo login validation
-      if (formData.email === "sumit@codebrew.com" && formData.password === "12345678") {
-        onAuth({
-          name: "Sumit",
-          email: formData.email,
-          balance: 1250.00
-        });
-        onClose();
-      } else {
-        setError("Invalid email or password. Try: sumit@codebrew.com / 12345678");
-      }
+      // Simulate login
+      onAuth({
+        name: `${formData.firstName} ${formData.lastName}` || "Demo User",
+        email: formData.email,
+        balance: 1250.00
+      });
     } else {
       // Simulate registration
-      if (formData.password !== formData.confirmPassword) {
-        setError("Passwords do not match");
-        return;
-      }
       onAuth({
         name: `${formData.firstName} ${formData.lastName}`,
         email: formData.email,
         balance: 100.00 // Welcome bonus
       });
-      onClose();
     }
+    
+    onClose();
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -111,13 +101,6 @@ export const AuthModal = ({
               </span>
             </div>
           </div>
-
-          {/* Error Message */}
-          {error && (
-            <div className="bg-destructive/10 border border-destructive/20 text-destructive p-3 rounded-md text-sm">
-              {error}
-            </div>
-          )}
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">

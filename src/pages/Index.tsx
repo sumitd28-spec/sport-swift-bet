@@ -279,7 +279,7 @@ const Index = () => {
                 <div className="space-y-4 max-w-md mx-auto">
                   <p className="text-muted-foreground text-sm sm:text-base">Please log in to view your account</p>
                   <div className="bg-card p-4 sm:p-6 rounded-lg border animate-fade-in">
-                    <h3 className="font-bold mb-2">Join ArenaX Today!</h3>
+                    <h3 className="font-bold mb-2">Join TomExch Today!</h3>
                     <p className="text-sm text-muted-foreground mb-4">Start betting with the best odds and promotions</p>
                     <button 
                       onClick={() => handleAuthClick('register')}

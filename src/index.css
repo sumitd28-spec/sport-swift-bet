@@ -17,11 +17,11 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Sports betting mint and white theme */
-    --primary: 142 69% 58%;
+    /* Sports betting orange and green theme */
+    --primary: 24 95% 53%;
     --primary-foreground: 0 0% 100%;
-    --primary-dark: 142 69% 53%;
-    --primary-darker: 142 69% 48%;
+    --primary-dark: 20 90% 48%;
+    --primary-darker: 16 85% 43%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -43,21 +43,21 @@ All colors MUST be HSL.
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 142 69% 58%;
+    --ring: 24 95% 53%;
 
     --radius: 0.75rem;
 
     /* Sports betting specific variables */
-    --sidebar-bg: 142 69% 53%;
-    --sidebar-hover: 142 69% 48%;
+    --sidebar-bg: 20 90% 48%;
+    --sidebar-hover: 16 85% 43%;
     --odds-bg: 0 0% 98%;
     --odds-border: 214.3 31.8% 91.4%;
-    --hero-gradient: linear-gradient(135deg, hsl(142 69% 58%), hsl(142 69% 68%));
+    --hero-gradient: linear-gradient(135deg, hsl(24 95% 53%), hsl(142 69% 58%));
     --bet-slip-bg: 0 0% 99%;
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --shadow-elegant: 0 10px 30px -10px hsl(142 69% 58% / 0.3);
+    --shadow-elegant: 0 10px 30px -10px hsl(24 95% 53% / 0.3);
     --shadow-card: 0 4px 6px -1px hsl(0 0% 0% / 0.1);
 
     --sidebar-background: 0 0% 98%;
@@ -74,7 +74,7 @@ All colors MUST be HSL.
 
     --sidebar-border: 220 13% 91%;
 
-    --sidebar-ring: 142 69% 58%;
+    --sidebar-ring: 24 95% 53%;
   }
 
   .dark {
@@ -87,10 +87,10 @@ All colors MUST be HSL.
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 142 69% 58%;
+    --primary: 24 95% 53%;
     --primary-foreground: 0 0% 100%;
-    --primary-dark: 142 69% 53%;
-    --primary-darker: 142 69% 48%;
+    --primary-dark: 20 90% 48%;
+    --primary-darker: 16 85% 43%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -112,13 +112,13 @@ All colors MUST be HSL.
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 142 69% 58%;
+    --ring: 24 95% 53%;
 
     --sidebar-bg: 217.2 32.6% 17.5%;
     --sidebar-hover: 217.2 32.6% 22%;
     --odds-bg: 217.2 32.6% 19%;
     --odds-border: 217.2 32.6% 25%;
-    --hero-gradient: linear-gradient(135deg, hsl(142 69% 58%), hsl(142 69% 68%));
+    --hero-gradient: linear-gradient(135deg, hsl(24 95% 53%), hsl(142 69% 58%));
     --bet-slip-bg: 217.2 32.6% 18%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -127,7 +127,7 @@ All colors MUST be HSL.
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 142 69% 58%;
+    --sidebar-ring: 24 95% 53%;
   }
 }
 

@@ -8,63 +8,129 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
   return (
-    <section className="relative py-16 sm:py-24 bg-gradient-to-br from-primary/5 via-background to-accent/5 overflow-hidden">
+    <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary-dark to-accent">
       {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
-        style={{
-          backgroundImage: `url(${heroSports})`
-        }}
-      />
-      
+      <div className="absolute inset-0">
+        <img 
+          src={heroSports} 
+          alt="Sports action collage"
+          className="w-full h-full object-cover mix-blend-overlay opacity-80"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/60 to-accent/90" />
+      </div>
+
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Main Headline */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in">
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              ARENA <span className="text-5xl sm:text-7xl lg:text-8xl">X</span>
-            </span>
-            <br />
-            <span className="text-foreground text-xl sm:text-3xl lg:text-4xl">
-              Virtual Sports
-            </span>
-          </h1>
-          
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <Button 
-              onClick={onGetStarted}
-              size="lg" 
-              className="text-lg px-8 py-6 bg-primary hover:bg-primary-dark shadow-elegant"
-            >
-              Start Betting Now
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="text-lg px-8 py-6 border-primary text-primary hover:bg-primary hover:text-white"
-            >
-              View Live Markets
-            </Button>
-          </div>
-          
-          {/* Stats */}
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center items-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
-            <div className="flex items-center gap-2 bg-background/80 backdrop-blur-sm px-4 py-2 rounded-full border border-border shadow-card">
-              <div className="w-2 h-2 bg-destructive rounded-full animate-pulse-glow"></div>
-              <span className="text-sm font-medium">24/7 Live Betting</span>
+      <div className="relative z-10 px-4 py-20 lg:py-32">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Text Content */}
+            <div className="text-white space-y-8 animate-fade-in">
+              <div className="space-y-4">
+                <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
+                  ARENA
+                  <span className="text-accent">EXCH</span>
+                </h1>
+                <div className="text-2xl lg:text-4xl font-semibold">
+                  <span className="text-accent">VIRTUAL</span>
+                  <br />
+                  <span>SPORTS</span>
+                </div>
+              </div>
+              
+              <p className="text-xl text-white/90 max-w-lg">
+                Experience the thrill of live sports betting with real-time odds, 
+                virtual sports action, and the best betting platform in the industry.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button 
+                  onClick={onGetStarted}
+                  size="lg"
+                  className="bg-white text-primary hover:bg-white/90 font-semibold text-lg px-8 py-6"
+                >
+                  <Play className="mr-2 h-5 w-5" />
+                  Start Betting Now
+                </Button>
+                <Button 
+                  variant="outline"
+                  size="lg"
+                  className="border-white text-white hover:bg-white hover:text-primary font-semibold text-lg px-8 py-6 bg-white/10 backdrop-blur-sm"
+                >
+                  <Trophy className="mr-2 h-5 w-5" />
+                  View Live Markets
+                </Button>
+              </div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-6 pt-8">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-accent">24/7</div>
+                  <div className="text-sm text-white/80">Live Betting</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-accent">500+</div>
+                  <div className="text-sm text-white/80">Daily Markets</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-accent">99.9%</div>
+                  <div className="text-sm text-white/80">Uptime</div>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center gap-2 bg-background/80 backdrop-blur-sm px-4 py-2 rounded-full border border-border shadow-card">
-              <span className="text-primary font-bold">500+</span>
-              <span className="text-sm font-medium">Daily Markets</span>
-            </div>
-            <div className="flex items-center gap-2 bg-background/80 backdrop-blur-sm px-4 py-2 rounded-full border border-border shadow-card">
-              <span className="text-success font-bold">99.9%</span>
-              <span className="text-sm font-medium">Uptime</span>
+
+            {/* Visual Elements */}
+            <div className="hidden lg:block relative">
+              <div className="space-y-6">
+                {/* Floating Cards */}
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 transform rotate-3 animate-pulse-glow">
+                  <div className="flex items-center justify-between text-white">
+                    <div>
+                      <div className="text-sm opacity-80">Live Match</div>
+                      <div className="font-semibold">Chelsea vs Arsenal</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-accent">2.5</div>
+                      <div className="text-xs opacity-80">ODDS</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 transform -rotate-2 ml-8 animate-pulse-glow">
+                  <div className="flex items-center justify-between text-white">
+                    <div>
+                      <div className="text-sm opacity-80">Virtual Cricket</div>
+                      <div className="font-semibold">India vs Australia</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-accent">1.8</div>
+                      <div className="text-xs opacity-80">ODDS</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 transform rotate-1 animate-pulse-glow">
+                  <div className="flex items-center gap-3 text-white">
+                    <TrendingUp className="h-8 w-8 text-accent" />
+                    <div>
+                      <div className="text-sm opacity-80">Today's Hot Pick</div>
+                      <div className="font-semibold">Manchester United Win</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Bottom Wave */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <svg viewBox="0 0 1200 120" fill="none" className="w-full h-auto">
+          <path 
+            d="M0,60 C300,120 600,0 1200,60 L1200,120 L0,120 Z" 
+            fill="white"
+          />
+        </svg>
       </div>
     </section>
   );
