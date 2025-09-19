@@ -136,7 +136,7 @@ export const BettingMarkets = ({ activeSport, onBetSelect }: BettingMarketsProps
   const renderOddsButton = (odds: number, label: string, matchId: string, type: string) => (
     <button
       onClick={() => onBetSelect({ matchId, type, odds, label })}
-      className="bg-success/20 hover:bg-success/30 text-success-foreground border border-success/40 font-bold px-3 py-2 sm:px-4 sm:py-2.5 rounded-md min-w-[65px] sm:min-w-[75px] text-center transition-smooth text-sm hover:scale-105 shadow-sm"
+      className="bg-success/30 hover:bg-success/40 text-success-foreground border border-success/50 font-bold px-3 py-2 sm:px-4 sm:py-2.5 rounded-md min-w-[65px] sm:min-w-[75px] text-center transition-smooth text-sm hover:scale-105 shadow-md"
     >
       {odds.toFixed(2)}
     </button>
