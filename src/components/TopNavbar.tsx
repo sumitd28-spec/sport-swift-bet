@@ -23,10 +23,10 @@ export const TopNavbar = ({ onMenuClick, onAuthClick, user }: TopNavbarProps) =>
           </Button>
           
           <div className="hidden lg:block">
-            <h1 className="text-lg sm:text-xl font-bold text-primary">TOMEXCH</h1>
+            <h1 className="text-lg sm:text-xl font-bold text-primary">SPORTEXCH</h1>
           </div>
           <div className="lg:hidden">
-            <h1 className="text-lg font-bold text-primary">TOMEXCH</h1>
+            <h1 className="text-lg font-bold text-primary">SPORTEXCH</h1>
           </div>
         </div>
 
