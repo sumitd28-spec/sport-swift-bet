@@ -32,18 +32,30 @@ export const TopNavbar = ({ onMenuClick, onAuthClick, user }: TopNavbarProps) =>
 
         {/* Center - Quick stats */}
         <div className="hidden md:flex items-center gap-2 lg:gap-4">
-          <div className="flex items-center gap-1 bg-destructive/10 text-destructive px-2 py-1 rounded-full text-xs font-medium">
+          <Button 
+            variant="ghost" 
+            size="sm"
+            className="flex items-center gap-1 bg-destructive/10 hover:bg-destructive/20 text-destructive px-3 py-1.5 rounded-full text-xs font-medium transition-smooth"
+          >
             <div className="w-1.5 h-1.5 bg-current rounded-full animate-ping"></div>
             <span>35 Live</span>
-          </div>
-          <div className="flex items-center gap-1 bg-primary/10 text-primary px-2 py-1 rounded-full text-xs font-medium">
+          </Button>
+          <Button 
+            variant="ghost" 
+            size="sm"
+            className="flex items-center gap-1 bg-primary/10 hover:bg-primary/20 text-primary px-3 py-1.5 rounded-full text-xs font-medium transition-smooth"
+          >
             <span>🏏</span>
             <span>Cricket</span>
-          </div>
-          <div className="flex items-center gap-1 bg-accent/10 text-accent px-2 py-1 rounded-full text-xs font-medium">
+          </Button>
+          <Button 
+            variant="ghost" 
+            size="sm"
+            className="flex items-center gap-1 bg-success/10 hover:bg-success/20 text-success px-3 py-1.5 rounded-full text-xs font-medium transition-smooth"
+          >
             <span>⚽</span>
             <span>Football</span>
-          </div>
+          </Button>
         </div>
 
         {/* Right side - User actions */}

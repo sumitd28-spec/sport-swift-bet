@@ -54,7 +54,7 @@ export const HeroSection = ({ onGetStarted }: HeroSectionProps) => {
                 <Button 
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white hover:text-primary font-semibold text-lg px-8 py-6"
+                  className="border-white text-white hover:bg-white hover:text-primary font-semibold text-lg px-8 py-6 bg-white/10 backdrop-blur-sm"
                 >
                   <Trophy className="mr-2 h-5 w-5" />
                   View Live Markets
